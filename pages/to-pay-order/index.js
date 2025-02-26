@@ -187,35 +187,35 @@ Page({
       btnLoading: true
     })
     // 检测实名认证状态
-    if (wx.getStorageSync('needIdCheck') == 1) {
-      const res = await WXAPI.userDetail(wx.getStorageSync('token'))
-      if (res.code == 0 && !res.data.base.isIdcardCheck) {
-        wx.navigateTo({
-          url: '/pages/idCheck/index',
-        })
-        this.setData({
-          btnLoading: false
-        })
-        return
-      }
-    }
-    const subscribe_ids = wx.getStorageSync('subscribe_ids')
-    if (subscribe_ids) {
-      wx.requestSubscribeMessage({
-        tmplIds: subscribe_ids.split(','),
-        success(res) {
-          console.log(res)
-        },
-        fail(e) {
-          console.error(e)
-        },
-        complete: (e) => {
-          this.createOrder(true)
-        },
-      })
-    } else {
+    // if (wx.getStorageSync('needIdCheck') == 1) {
+    //   const res = await WXAPI.userDetail(wx.getStorageSync('token'))
+    //   if (res.code == 0 && !res.data.base.isIdcardCheck) {
+    //     wx.navigateTo({
+    //       url: '/pages/idCheck/index',
+    //     })
+    //     this.setData({
+    //       btnLoading: false
+    //     })
+    //     return
+    //   }
+    // }
+    // const subscribe_ids = wx.getStorageSync('subscribe_ids')
+    // if (subscribe_ids) {
+    //   wx.requestSubscribeMessage({
+    //     tmplIds: subscribe_ids.split(','),
+    //     success(res) {
+    //       console.log(res)
+    //     },
+    //     fail(e) {
+    //       console.error(e)
+    //     },
+    //     complete: (e) => {
+    //       this.createOrder(true)
+    //     },
+    //   })
+    // } else {
       this.createOrder(true)
-    }
+    // }
   },
   async createOrder(e) {
     // shopCarType: 0 //0自营购物车，1云货架购物车
@@ -581,79 +581,79 @@ Page({
     await this.userAmount()
     const balance = this.data.balance
     const userScore = this.data.userScore
-    if (userScore < res.data.score) {
-      wx.showModal({
-        title: '提示',
-        content: '您当前可用积分不足，请稍后前往订单管理进行支付',
-        showCancel: false,
-        success: res2 => {
-          wx.redirectTo({
-            url: "/pages/order-list/index"
-          })
-        }
-      })
-      return
-    }
-    if (balance || res.data.amountReal * 1 == 0) {
-      // 有余额
-      const money = (res.data.amountReal * 1 - balance * 1).toFixed(2)
-      if (money <= 0) {
-        // 余额足够
-        wx.showModal({
-          title: '请确认支付',
-          content: `您当前可用余额¥${balance}，使用余额支付¥${res.data.amountReal}？`,
-          confirmText: "确认支付",
-          cancelText: "暂不付款",
-          success: res2 => {
-            if (res2.confirm) {
-              // 使用余额支付
-              WXAPI.orderPay(wx.getStorageSync('token'), orderId).then(res3 => {
-                if (res3.code != 0) {
-                  wx.showToast({
-                    title: res3.msg,
-                    icon: 'none'
-                  })
-                  return
-                }
-                wx.redirectTo({
-                  url: "/pages/order-list/index"
-                })
-              })
-            } else {
-              wx.redirectTo({
-                url: "/pages/order-list/index"
-              })
-            }
-          }
-        })
-      } else {
-        // 余额不够
-        wx.showModal({
-          title: '请确认支付',
-          content: `您当前可用余额¥${balance}，仍需支付¥${money}`,
-          confirmText: "确认支付",
-          cancelText: "暂不付款",
-          success: res2 => {
-            if (res2.confirm) {
-              // 使用余额支付
-              this.setData({
-                orderId,
-                money,
-                paymentShow: true,
-                nextAction: {
-                  type: 0,
-                  id: orderId
-                }
-              })
-            } else {
-              wx.redirectTo({
-                url: "/pages/order-list/index"
-              })
-            }
-          }
-        })
-      }
-    } else {
+    // if (userScore < res.data.score) {
+    //   wx.showModal({
+    //     title: '提示',
+    //     content: '您当前可用积分不足，请稍后前往订单管理进行支付',
+    //     showCancel: false,
+    //     success: res2 => {
+    //       wx.redirectTo({
+    //         url: "/pages/order-list/index"
+    //       })
+    //     }
+    //   })
+    //   return
+    // }
+    // if (balance || res.data.amountReal * 1 == 0) {
+    //   // 有余额
+    //   const money = (res.data.amountReal * 1 - balance * 1).toFixed(2)
+    //   if (money <= 0) {
+    //     // 余额足够
+    //     wx.showModal({
+    //       title: '请确认支付',
+    //       content: `您当前可用余额¥${balance}，使用余额支付¥${res.data.amountReal}？`,
+    //       confirmText: "确认支付",
+    //       cancelText: "暂不付款",
+    //       success: res2 => {
+    //         if (res2.confirm) {
+    //           // 使用余额支付
+    //           WXAPI.orderPay(wx.getStorageSync('token'), orderId).then(res3 => {
+    //             if (res3.code != 0) {
+    //               wx.showToast({
+    //                 title: res3.msg,
+    //                 icon: 'none'
+    //               })
+    //               return
+    //             }
+    //             wx.redirectTo({
+    //               url: "/pages/order-list/index"
+    //             })
+    //           })
+    //         } else {
+    //           wx.redirectTo({
+    //             url: "/pages/order-list/index"
+    //           })
+    //         }
+    //       }
+    //     })
+    //   } else {
+    //     // 余额不够
+    //     wx.showModal({
+    //       title: '请确认支付',
+    //       content: `您当前可用余额¥${balance}，仍需支付¥${money}`,
+    //       confirmText: "确认支付",
+    //       cancelText: "暂不付款",
+    //       success: res2 => {
+    //         if (res2.confirm) {
+    //           // 使用余额支付
+    //           this.setData({
+    //             orderId,
+    //             money,
+    //             paymentShow: true,
+    //             nextAction: {
+    //               type: 0,
+    //               id: orderId
+    //             }
+    //           })
+    //         } else {
+    //           wx.redirectTo({
+    //             url: "/pages/order-list/index"
+    //           })
+    //         }
+    //       }
+    //     })
+    //   }
+    // } else {
       // 没余额
       this.setData({
         orderId,
@@ -664,7 +664,7 @@ Page({
           id: orderId
         }
       })
-    }
+    // }
   },
   async initShippingAddress() {
     const res = await WXAPI.defaultAddress(wx.getStorageSync('token'))

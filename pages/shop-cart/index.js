@@ -35,9 +35,10 @@ Page({
   onLoad: function () {
     this.initEleWidth();
     this.onShow();
-    this.setData({
-      shopping_cart_vop_open: wx.getStorageSync('shopping_cart_vop_open')
-    })
+    // @wine
+    // this.setData({
+    //   shopping_cart_vop_open: wx.getStorageSync('shopping_cart_vop_open')
+    // })
   },
   onShow: function () {
     this.shippingCarInfo()

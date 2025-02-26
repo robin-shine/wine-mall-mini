@@ -31,7 +31,7 @@
           </block>
         </view>
       </van-card>
-      <view class="peisong-way" hidden="{{ shop.hasNoCoupons }}">
+      <!-- <view class="peisong-way" hidden="{{ shop.hasNoCoupons }}">
         <view class="row-box" style="border-bottom:none;">
           <view class="row-label t">使用优惠券</view>
         </view>
@@ -41,7 +41,7 @@
             <image class="next" src="/images/icon/next.png"></image>
           </view>
         </picker>
-      </view>
+      </view> -->
     </van-cell-group>
   </block>
   <block wx:else> <!-- 立即购买 -->
@@ -69,7 +69,7 @@
       <van-cell wx:if="{{shopCarType == 0 && isNeedLogistics > 0}}" title="配送方式">
         <view slot="">
           <radio-group bindchange="radioChange">
-            <label class="radio">
+            <label class="radio" style="margin-right: 8rpx">
               <radio value="kd" checked="{{peisongType == 'kd'}}" /> 快递
             </label>
             <label class="radio">
@@ -135,7 +135,7 @@
           </radio-group>
         </view>
       </van-cell>
-      <van-cell wx:if="{{ dyopen == 1 }}" title="订阅周期">
+      <!-- <van-cell wx:if="{{ dyopen == 1 }}" title="订阅周期">
         <view slot="">
           <radio-group bindchange="dyunitChange">
             <label class="radio">
@@ -149,8 +149,8 @@
             </label>
           </radio-group>
         </view>
-      </van-cell>
-      <van-field
+      </van-cell> -->
+      <!-- <van-field
         wx:if="{{ dyopen == 1 }}"
         label="订阅间隔"
         model:value="{{ dyduration }}"
@@ -164,8 +164,8 @@
           {{ dyunit == 1 ? '月': '' }}
           {{ dyunit == 2 ? '年': '' }}
         </view>
-      </van-field>
-      <van-field
+      </van-field> -->
+      <!-- <van-field
         wx:if="{{ dyopen == 1 }}"
         label="订阅次数"
         model:value="{{ dytimes }}"
@@ -175,8 +175,8 @@
         use-button-slot
       >
         <view slot="button">次</view>
-      </van-field>
-      <van-field
+      </van-field> -->
+      <!-- <van-field
         wx:if="{{ dyopen == 1 }}"
         label="首次扣费"
         is-link
@@ -186,9 +186,9 @@
         placeholder="请输入数字"
         input-align="right"
         bind:click-input="dateStartclick"
-      />
+      /> -->
     </view>
-    <view class="peisong-way" hidden="{{hasNoCoupons}}">
+    <!-- <view class="peisong-way" hidden="{{hasNoCoupons}}">
       <view class="row-box" style="border-bottom:none;">
         <view class="row-label t">使用优惠券</view>
       </view>
@@ -198,11 +198,11 @@
           <image class="next" src="/images/icon/next.png"></image>
         </view>
       </picker>
-    </view>
+    </view> -->
   </view>
 
   <!-- 选择积分抵扣 -->
-  <van-radio-group wx:if="{{ scoreDeductionRules && scoreDeductionRules.length > 0 }}" value="{{ deductionScore }}" bind:change="deductionScoreChange">
+  <!-- <van-radio-group wx:if="{{ scoreDeductionRules && scoreDeductionRules.length > 0 }}" value="{{ deductionScore }}" bind:change="deductionScoreChange">
     <van-cell-group title="积分抵扣">
       <van-cell title="不使用积分" clickable data-name="-1" bind:click="deductionScoreClick">
         <van-radio slot="right-icon" name="-1" />
@@ -214,9 +214,9 @@
         <van-radio slot="right-icon" name="{{ item.score }}" />
       </van-cell>
     </van-cell-group>
-  </van-radio-group>
+  </van-radio-group> -->
 
-  <van-radio-group wx:if="{{ myCards }}" value="{{ cardId }}" bind:change="cardChange">
+  <!-- <van-radio-group wx:if="{{ myCards }}" value="{{ cardId }}" bind:change="cardChange">
     <van-cell-group title="使用水卡支付">
       <van-cell title="不使用水卡" clickable data-name="0" bind:click="cardClick">
         <van-radio slot="right-icon" name="0" />
@@ -225,11 +225,11 @@
         <van-radio slot="right-icon" name="{{ item.id }}" />
       </van-cell>
     </van-cell-group>
-  </van-radio-group>
+  </van-radio-group> -->
 
   <van-cell-group wx:if="{{ yunPrice || deductionMoney || couponAmount || balance }}" title="小计">
     <van-cell wx:if="{{ yunPrice }}" title="运费" value="¥{{yunPrice}}" />
-    <van-cell wx:if="{{ amountLogistics2 }}" title="附加运费" value="¥{{ amountLogistics2 }}" />
+    <!-- <van-cell wx:if="{{ amountLogistics2 }}" title="附加运费" value="¥{{ amountLogistics2 }}" />
     <block wx:if="{{ goodsAdditionalPriceMap }}">
       <van-cell
         wx:for="{{ goodsAdditionalPriceMap }}" wx:key="id"
@@ -239,16 +239,16 @@
     </block>
     <van-cell wx:if="{{deductionMoney}}" title="积分抵扣" value="-¥{{deductionMoney}}" />
     <van-cell wx:if="{{couponAmount}}" title="优惠金额" value="-¥{{couponAmount}}" />
-    <van-cell wx:if="{{order_pay_user_balance == '1' && balance}}" title="账户余额" value="¥{{balance}}" />
+    <van-cell wx:if="{{order_pay_user_balance == '1' && balance}}" title="账户余额" value="¥{{balance}}" /> -->
   </van-cell-group>
   <view class="bottom-box"></view>
   <van-submit-bar
     price="{{ allGoodsAndYunPrice*100 }}"
-    suffix-label="{{ totalScoreToPay ? '+' + totalScoreToPay + ' 积分' : '' }}"
     button-text="提交订单"
     loading="{{ btnLoading }}"
     bind:submit="goCreateOrder"
   />
+  <!-- suffix-label="{{ totalScoreToPay ? '+' + totalScoreToPay + ' 积分' : '' }}" -->
 </block>
 
 <van-popup

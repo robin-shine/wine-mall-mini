@@ -135,11 +135,12 @@ Page({
         })
       }      
     })
-    that.getCoupons()
-    that.getNotice()
-    that.kanjiaGoods()
-    that.pingtuanGoods()
-    this.adPosition()
+    // @wine
+    // that.getCoupons()
+    // that.getNotice()
+    // that.kanjiaGoods()
+    // that.pingtuanGoods()
+    // this.adPosition()
     // 读取系统参数
     this.readConfigVal()
     getApp().configLoadOK = () => {

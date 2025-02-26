@@ -91,23 +91,23 @@ Page({
           res.data.balance = 0
         }
         // 增加提示框
-        if (res.data.score < needScore) {
-          wx.showToast({
-            title: '您的积分不足，无法支付',
-            icon: 'none'
-          })
-          return;
-        }
+        // if (res.data.score < needScore) {
+        //   wx.showToast({
+        //     title: '您的积分不足，无法支付',
+        //     icon: 'none'
+        //   })
+        //   return;
+        // }
         let _msg = '订单金额: ' + money +' 元'
-        if (res.data.balance > 0) {
-          _msg += ',可用余额为 ' + res.data.balance +' 元'
-          if (money - res.data.balance > 0) {
-            _msg += ',仍需微信支付 ' + (money - res.data.balance).toFixed(2) + ' 元'
-          }          
-        }
-        if (needScore > 0) {
-          _msg += ',并扣除 ' + needScore + ' 积分'
-        }
+        // if (res.data.balance > 0) {
+        //   _msg += ',可用余额为 ' + res.data.balance +' 元'
+        //   if (money - res.data.balance > 0) {
+        //     _msg += ',仍需微信支付 ' + (money - res.data.balance).toFixed(2) + ' 元'
+        //   }          
+        // }
+        // if (needScore > 0) {
+        //   _msg += ',并扣除 ' + needScore + ' 积分'
+        // }
         money = money - res.data.balance
         wx.showModal({
           title: '请确认支付',

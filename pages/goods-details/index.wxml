@@ -27,15 +27,15 @@
             <text>¥</text> {{selectSizeOPrice}}</view>
         </view>
         <view class="goods-info-fx">
-          <view class='item left'>
+          <!-- <view class='item left'>
             <van-icon name="share-o" size="24px" />
             <view class="icon-title">分享</view>
             <button open-type='share'></button>
-          </view>
-          <view class='item' bindtap="drawSharePic">
+          </view> -->
+          <!-- <view class='item' bindtap="drawSharePic">
             <van-icon name="qr" size="24px"/>
             <view class="icon-title">二维码</view>            
-          </view>
+          </view> -->
         </view>
       </view>
       <view class="goods-title">{{goodsDetail.basicInfo.name}}</view>
@@ -218,19 +218,19 @@
     </view>
   </scroll-view>
   <van-goods-action wx:if="{{!curGoodsKanjia}}">
-    <van-goods-action-icon wx:if="{{ customerServiceType == 'QW' }}" icon="chat-o" text="客服" bind:click="customerService" />
-    <van-goods-action-icon wx:else icon="chat-o" text="客服" open-type="contact"
+    <!-- <van-goods-action-icon wx:if="{{ customerServiceType == 'QW' }}" icon="chat-o" text="客服" bind:click="customerService" /> -->
+    <!-- <van-goods-action-icon wx:else icon="chat-o" text="客服" open-type="contact"
       send-message-title="{{goodsDetail.basicInfo.name}}" send-message-img="{{goodsDetail.basicInfo.pic}}"
-      send-message-path="/pages/goods-details/index?id={{goodsDetail.basicInfo.id}}" show-message-card="{{ true }}" />
+      send-message-path="/pages/goods-details/index?id={{goodsDetail.basicInfo.id}}" show-message-card="{{ true }}" /> -->
     <van-goods-action-icon icon="cart-o" text="购物车" bind:click="goShopCar" info="{{ shopNum ? shopNum : '' }}" />
     <van-goods-action-icon icon="{{faved?'like':'like-o'}}" text="收藏" bind:click="addFav" />
     <van-goods-action-button wx:if="{{!goodsDetail.basicInfo.pingtuan}}" text="加入购物车" type="warning"
       bind:click="{{goodsDetailSkuShowType==0?'toAddShopCar':'addShopCar'}}" />
     <van-goods-action-button wx:if="{{!goodsDetail.basicInfo.pingtuan}}" text="立即购买" data-shopType="{{shopType}}"
       bind:click="{{goodsDetailSkuShowType==0?'tobuy':'buyNow'}}" />
-    <van-goods-action-button wx:if="{{goodsDetail.basicInfo.pingtuan}}" text="单独购买" type="warning"
-      bind:click="tobuy" />
-    <van-goods-action-button wx:if="{{goodsDetail.basicInfo.pingtuan}}" text="发起拼团" bind:click="toPingtuan" />
+    <!-- <van-goods-action-button wx:if="{{goodsDetail.basicInfo.pingtuan}}" text="单独购买" type="warning"
+      bind:click="tobuy" /> -->
+    <!-- <van-goods-action-button wx:if="{{goodsDetail.basicInfo.pingtuan}}" text="发起拼团" bind:click="toPingtuan" /> -->
   </van-goods-action>
 </view>
 
