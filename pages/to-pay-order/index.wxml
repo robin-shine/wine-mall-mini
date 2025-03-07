@@ -11,7 +11,8 @@
 </block>
 <block wx:if="{{ bindMobileStatus == 1 }}">
   <block wx:if="{{ orderType != 'buyNow' }}"> <!-- 购物车 -->
-    <van-cell-group wx:for="{{shopList}}" wx:for-item="shop" wx:for-index="shopIndex" wx:key="id" title="{{ shop.name }}">
+    <!-- <van-cell-group wx:for="{{shopList}}" wx:for-item="shop" wx:for-index="shopIndex" wx:key="id" title="{{ shop.name }}"> -->
+    <van-cell-group wx:for="{{shopList}}" wx:for-item="shop" wx:for-index="shopIndex" wx:key="id">
       <van-card
         wx:for="{{goodsList}}" wx:key="index"
         wx:if="{{ item.shopId == shop.id }}"
@@ -70,7 +71,7 @@
         <view slot="">
           <radio-group bindchange="radioChange">
             <label class="radio" style="margin-right: 8rpx">
-              <radio value="kd" checked="{{peisongType == 'kd'}}" /> 快递
+              <radio style="font-size: 14px" value="kd" checked="{{peisongType == 'kd'}}" /> 快递
             </label>
             <label class="radio">
               <radio value="zq" checked="{{peisongType == 'zq'}}" /> 到店自取
@@ -99,7 +100,7 @@
       </view>
       <van-field
         wx:if="{{peisongType == 'zq'}}"
-        size="large"
+        size="middle"
         model:value="{{ name }}"
         label="联系人"
         clearable
@@ -108,7 +109,7 @@
       />
       <van-field
         wx:if="{{peisongType == 'zq'}}"
-        size="large"
+        size="middle"
         model:value="{{ mobile }}"
         label="联系电话"
         type="number"

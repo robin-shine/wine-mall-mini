@@ -595,37 +595,40 @@ Page({
     //   return
     // }
     // if (balance || res.data.amountReal * 1 == 0) {
-    //   // 有余额
-    //   const money = (res.data.amountReal * 1 - balance * 1).toFixed(2)
-    //   if (money <= 0) {
-    //     // 余额足够
-    //     wx.showModal({
-    //       title: '请确认支付',
-    //       content: `您当前可用余额¥${balance}，使用余额支付¥${res.data.amountReal}？`,
-    //       confirmText: "确认支付",
-    //       cancelText: "暂不付款",
-    //       success: res2 => {
-    //         if (res2.confirm) {
-    //           // 使用余额支付
-    //           WXAPI.orderPay(wx.getStorageSync('token'), orderId).then(res3 => {
-    //             if (res3.code != 0) {
-    //               wx.showToast({
-    //                 title: res3.msg,
-    //                 icon: 'none'
-    //               })
-    //               return
-    //             }
-    //             wx.redirectTo({
-    //               url: "/pages/order-list/index"
-    //             })
-    //           })
-    //         } else {
-    //           wx.redirectTo({
-    //             url: "/pages/order-list/index"
-    //           })
-    //         }
-    //       }
-    //     })
+    if (res.data.amountReal * 1 == 0) {
+      // 有余额
+      const money = (res.data.amountReal * 1 - balance * 1).toFixed(2)
+      if (money <= 0) {
+        // 余额足够
+        wx.showModal({
+          title: '请确认支付',
+          // content: `您当前可用余额¥${balance}，使用余额支付¥${res.data.amountReal}？`,
+          content: `支付¥${res.data.amountReal}？`,
+          confirmText: "确认支付",
+          cancelText: "暂不付款",
+          success: res2 => {
+            if (res2.confirm) {
+              // 使用余额支付
+              WXAPI.orderPay(wx.getStorageSync('token'), orderId).then(res3 => {
+                if (res3.code != 0) {
+                  wx.showToast({
+                    title: res3.msg,
+                    icon: 'none'
+                  })
+                  return
+                }
+                wx.redirectTo({
+                  url: "/pages/order-list/index"
+                })
+              })
+            } else {
+              wx.redirectTo({
+                url: "/pages/order-list/index"
+              })
+            }
+          }
+        })
+      }
     //   } else {
     //     // 余额不够
     //     wx.showModal({
@@ -653,18 +656,18 @@ Page({
     //       }
     //     })
     //   }
-    // } else {
+    } else {
       // 没余额
-      this.setData({
-        orderId,
-        money: res.data.amountReal,
-        paymentShow: true,
-        nextAction: {
-          type: 0,
-          id: orderId
-        }
-      })
-    // }
+        this.setData({
+          orderId,
+          money: res.data.amountReal,
+          paymentShow: true,
+          nextAction: {
+            type: 0,
+            id: orderId
+          }
+        })
+    }
   },
   async initShippingAddress() {
     const res = await WXAPI.defaultAddress(wx.getStorageSync('token'))

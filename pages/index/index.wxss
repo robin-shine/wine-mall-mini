@@ -257,6 +257,7 @@
   font-size: 24rpx;
   color: #333;
   margin-left: 24rpx;
+  margin-top: 4rpx;
 }
 
 .goods-box .goods-price-container {
