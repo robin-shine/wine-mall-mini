@@ -84,6 +84,7 @@
     />
   </view>
   <button type="warn" bind:tap="bindSave">立即申请售后</button>
+  <view style="padding-bottom: env(safe-area-inset-bottom)" />
 </block>
 
 <van-popup show="{{ popShow }}" position="bottom" round custom-style="max-height: 80vh" bind:close="popClose">

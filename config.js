@@ -1,5 +1,5 @@
 module.exports = {
-  version: '25.01.17',
+  version: '25.03.08',
   note: '微信商家转账接口，增加用户确认收款功能', // 这个为版本描述，无需修改
   subDomain: 'xbqjy', // 此处改成你自己的专属域名。什么是专属域名？请看教程 https://www.it120.cc/help/qr6l4m.html
   merchantId: 70638, // 商户ID，可在后台工厂设置-->商户信息查看
