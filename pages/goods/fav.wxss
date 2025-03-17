@@ -43,8 +43,8 @@ page,view,image,input {
   font-size: 34rpx;
 }
 .delete-btn {
-  width: 55rpx;
-  height: 55rpx;
+  width: 36rpx;
+  height: 36rpx;
   margin: auto;
   margin-top: 32rpx;
 }
