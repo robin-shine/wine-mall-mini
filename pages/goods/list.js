@@ -50,10 +50,11 @@ Page({
       orderBy: this.data.orderBy,
       page: this.data.page,
       pageSize: 20,
+      nameLike: this.data.name
     }
-    if (this.data.name) {
-      _data.k = this.data.name
-    }
+    // if (this.data.name) {
+    //   _data.k = this.data.name
+    // }
     if (this.data.categoryId) {
       _data.categoryId = this.data.categoryId
     }
