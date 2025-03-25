@@ -239,7 +239,11 @@ Page({
         that.pingtuanList(goodsId)
       }
       that.data.goodsDetail = goodsDetailRes.data;
-      if (goodsDetailRes.data.basicInfo.videoId) {
+      if (goodsDetailRes.data.basicInfo.mp4) {
+        that.setData({
+          videoMp4Src: goodsDetailRes.data.basicInfo.mp4
+        });
+      } else if (goodsDetailRes.data.basicInfo.videoId) {
         that.getVideoSrc(goodsDetailRes.data.basicInfo.videoId);
       }
       

@@ -9,8 +9,8 @@
   <scroll-view class="scroll-container" scroll-into-view="{{toView}}" scroll-y="true" scroll-with-animation="true" bindscroll="bindscroll">
     <view class="swiper-container" id="swiper-container">
       <swiper class="swiper_box" indicator-dots="true" indicator-active-color="#fff"
-        autoplay="{{!goodsDetail.basicInfo.videoId}}" circular>
-        <swiper-item wx:if="{{goodsDetail.basicInfo.videoId}}">
+        autoplay="{{!goodsDetail.basicInfo.videoId && !goodsDetail.basicInfo.mp4}}" circular>
+        <swiper-item wx:if="{{goodsDetail.basicInfo.videoId || goodsDetail.basicInfo.mp4}}">
           <video src="{{videoMp4Src}}" autoplay="true" loop="true" style='width:100%;height:100%;'></video>
         </swiper-item>
         <swiper-item wx:for="{{goodsDetail.pics}}" wx:key="id">
