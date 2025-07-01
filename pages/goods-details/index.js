@@ -21,6 +21,8 @@ Page({
     propertyChildNames: "",
     canSubmit: false, //  选中规格尺寸时候是否允许加入购物车
     shopType: "addShopCar", //购物类型，加入购物车或立即购买，默认为加入购物车
+    canViewSecretPrice: false,
+    showEncrypt: true,
   },
   bindscroll(e) {
     if (this.data.tabclicked) {
@@ -49,6 +51,13 @@ Page({
   },
   onLoad(e) {
     // e.id = 122843
+    let productSecretPriceViewerWhiteList = wx.getStorageSync('product_secret_price_viewer_white_list');
+    let uid = wx.getStorageSync('uid');
+    if (productSecretPriceViewerWhiteList && productSecretPriceViewerWhiteList.includes(uid)) {
+      this.setData({
+        canViewSecretPrice: true
+      })
+    }
     // 读取分享链接中的邀请人编号
     if (e && e.inviter_id) {
       wx.setStorageSync('referrer', e.inviter_id)
@@ -82,6 +91,11 @@ Page({
     this.goodsAddition()
     // 弹出编辑昵称头像框
     getApp().initNickAvatarUrlPOP(this)
+  },
+  handleShowRealScore() {
+    this.setData({
+      showEncrypt: !this.data.showEncrypt
+    })
   },
   readConfigVal() {
     // 读取系统参数
