@@ -220,10 +220,16 @@ Page({
   async createOrder(e) {
     // shopCarType: 0 //0自营购物车，1云货架购物车
     const loginToken = wx.getStorageSync('token') // 用户登录 token
+    let remark = this.data.remark;
+    let inviter_id_storge = wx.getStorageSync('referrer');
+    if (inviter_id_storge) {
+      remark = `备注_${this.data.remark} 分享人用户ID_${inviter_id_storge}`;
+    }
+
     const postData = {
       token: loginToken,
       goodsJsonStr: this.data.goodsJsonStr,
-      remark: this.data.remark,
+      remark: remark,
       peisongType: this.data.peisongType,
       goodsType: this.data.shopCarType,
       cardId: this.data.cardId,

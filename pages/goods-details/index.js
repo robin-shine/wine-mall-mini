@@ -23,6 +23,7 @@ Page({
     shopType: "addShopCar", //购物类型，加入购物车或立即购买，默认为加入购物车
     canViewSecretPrice: false,
     showEncrypt: true,
+    selectRealPrice: null,
   },
   bindscroll(e) {
     if (this.data.tabclicked) {
@@ -352,8 +353,20 @@ Page({
    */
   closePopupTap: function () {
     this.setData({
-      hideShopPopup: true
+      hideShopPopup: true,
+      selectRealPrice: null
     })
+    for (let index = 0; index < this.data.goodsDetail.properties.length; index++) {
+      const element = this.data.goodsDetail.properties[index]
+      element.childsCurGoods.forEach(child => {
+        child.active = false
+      })
+    }
+    this.setData({
+      'goodsDetail.properties': this.data.goodsDetail.properties,
+    })
+    this.data.canSubmit = false;
+
   },
   stepChange(event) {
     this.setData({
@@ -462,6 +475,7 @@ Page({
     let totalScoreToPay = this.data.goodsDetail.basicInfo.minScore
     let buyNumMax = this.data.goodsDetail.basicInfo.stores
     let buyNumber = this.data.goodsDetail.basicInfo.minBuyNumber
+    let selectRealPrice = null
     if (this.data.shopType == 'toPingtuan') {
       price = this.data.goodsDetail.basicInfo.pingtuanPrice
     }
@@ -481,6 +495,7 @@ Page({
         originalPrice = res.data.originalPrice
         totalScoreToPay = res.data.score
         buyNumMax = res.data.stores
+        selectRealPrice = '￥' + res.data.score
       }
     }
     // 计算配件价格
@@ -495,6 +510,7 @@ Page({
     }
     this.setData({
       selectSizePrice: price,
+      selectRealPrice: this.data.canViewSecretPrice && !!selectRealPrice ? selectRealPrice : undefined,
       selectSizeOPrice: originalPrice,
       totalScoreToPay: totalScoreToPay,
       buyNumMax,

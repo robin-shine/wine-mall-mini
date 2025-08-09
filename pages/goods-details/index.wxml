@@ -25,10 +25,10 @@
           <view wx:if="{{goodsDetail.basicInfo.originalPrice && goodsDetail.basicInfo.originalPrice > 0}}"
             class="goods-price" style='color:#aaa;text-decoration:line-through;padding: 15rpx 0rpx 0rpx 15rpx;'>
             <text>¥</text> {{selectSizeOPrice}}</view>
-          <view wx:if="{{canViewSecretPrice && goodsDetail.basicInfo.minScore && goodsDetail.basicInfo.minScore > 0}}"
+          <!-- <view wx:if="{{canViewSecretPrice && goodsDetail.basicInfo.minScore && goodsDetail.basicInfo.minScore > 0}}"
             class="goods-price" style='color:#aaa;padding: 15rpx 0rpx 0rpx 15rpx;display:flex'>
             {{showEncrypt ? '****' : "¥" + goodsDetail.basicInfo.minScore}}<van-icon style="padding-left: 6rpx" name="eye-o" bind:tap="handleShowRealScore" />
-          </view>
+          </view> -->
         </view>
         <view class="goods-info-fx">
           <!-- <view class='item left'>
@@ -260,7 +260,7 @@
   custom-style="padding-top:48rpx;max-height: 80%;" bind:close="closePopupTap">
   <van-card centered price="{{ selectSizePrice }}"
     origin-price="{{ selectSizePrice != selectSizePrice ? selectSizeOPrice : '' }}"
-    title="{{ goodsDetail.basicInfo.name }}" thumb="{{ skuGoodsPic }}" />
+    title="{{ goodsDetail.basicInfo.name }}" thumb="{{ skuGoodsPic }}" desc="{{ selectRealPrice }}" />
   <view class="size-label-box">
     <block wx:for="{{goodsDetail.properties}}" wx:for-item="property" wx:for-index="idx" wx:key="id">
       <view class="label">{{property.name}}</view>
