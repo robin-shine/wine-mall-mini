@@ -63,7 +63,7 @@
     </wxs>
     <van-card
       wx:for="{{currentGoods}}" wx:key="id"
-      price="{{item.minPrice}}"
+      price="{{item.subName === '咨询价' ? '咨询价' : item.minPrice}}"
       desc="{{item.numberSells ? '已售' + item.numberSells : ''}}"
       tag="{{item.gotScore ? (item.gotScore + (item.gotScoreType ? '%' : '') + '积分') : ''}}"
       title="{{item.name}}"

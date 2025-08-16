@@ -238,7 +238,7 @@ Page({
       }
       const _data = {
         goodsDetail: goodsDetailRes.data,
-        selectSizePrice: goodsDetailRes.data.basicInfo.minPrice,
+        selectSizePrice: goodsDetailRes.data.basicInfo.subName === '咨询价' ? '咨询价' : goodsDetailRes.data.basicInfo.minPrice,
         selectSizeOPrice: goodsDetailRes.data.basicInfo.originalPrice,
         totalScoreToPay: goodsDetailRes.data.basicInfo.minScore,
         buyNumMax: goodsDetailRes.data.basicInfo.stores,
@@ -343,7 +343,7 @@ Page({
   bindGuiGeTap: function () {
     this.setData({
       hideShopPopup: false,
-      selectSizePrice: this.data.goodsDetail.basicInfo.minPrice,
+      selectSizePrice: this.data.goodsDetail.basicInfo.subName === '咨询价' ? '咨询价' : this.data.goodsDetail.basicInfo.minPrice,
       selectSizeOPrice: this.data.goodsDetail.basicInfo.originalPrice,
       skuGoodsPic: this.data.goodsDetail.basicInfo.pic
     })
@@ -489,7 +489,9 @@ Page({
       })
       if (res.code == 0) {
         price = res.data.price
-        if (this.data.shopType == 'toPingtuan') {
+        if (res.data.type === '咨询价') {
+          price = '咨询价'
+        } else if (this.data.shopType == 'toPingtuan') {
           price = res.data.pingtuanPrice
         }
         originalPrice = res.data.originalPrice
@@ -653,6 +655,13 @@ Page({
         icon: 'none'
       })
       this.bindGuiGeTap()
+      return;
+    }
+    if (this.data.goodsDetail.properties && this.data.selectSizePrice === '咨询价') {
+      wx.showToast({
+        title: '请联系客服咨询价格后再下单',
+        icon: 'none'
+      })
       return;
     }
     if (this.data.goodsAddition) {

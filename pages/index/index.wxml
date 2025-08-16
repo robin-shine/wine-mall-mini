@@ -196,7 +196,7 @@ module.exports = {
       <view class="goods-title van-multi-ellipsis--l2">{{item.name}}</view>
       <view wx:if="{{item.characteristic}}" class="characteristic van-multi-ellipsis--l2" style="-webkit-line-clamp: 1;">{{item.characteristic}}</view>
       <view class="goods-price-container">
-        <view class="goods-price">¥ {{item.minPrice}}</view>
+        <view class="goods-price">¥ {{item.subName === '咨询价' ? item.subName : item.minPrice}}</view>
         <view wx:if="{{item.originalPrice && item.originalPrice > 0}}" class="goods-price2">¥ {{item.originalPrice}}
         </view>
       </view>
